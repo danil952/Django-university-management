@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static "css/styles.css" %}" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <meta charset="utf-8" />
+        <title>Записи</title>
+    </head>
+    <body class="container">
+        {% block content %}
+
+        {% if error %}
+            <p class="error">Сожалеем, вы неправильно ввели логин или пароль</p>
+        {% endif %}
+
+        <form method='post' class="form">
+            {% csrf_token %}
+            <label for="username">Логин:</label>
+            <input type="text" name="username" value="" id="username">
+            <label for="password">Пароль:</label>
+            <input type="password" name="password" value="" id="password">
+
+            <input type="submit" value="Войти" class="btn btn-primary"/>
+            <input type="hidden" name="next" value="{{ next|escape }}" />
+        </form>
+        <a href="register" class="btn btn-primary">Регистрация</a>
+
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static "css/styles.css" %}" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <meta charset="utf-8" />
+        <title>Записи</title>
+    </head>
+    <body class="container">
+        <a href="new" class="btn btn-primary">Создать пользователя</a>
+        <a href="search" class="btn btn-primary">Найти пользователя</a>
+        <a href="cources" class="btn btn-primary">Показать курсы</a>
+        <a href="map" class="btn btn-info">Показать карту</a>
+        <a href="logout" class="btn btn-danger">Выйти</a>
+        {% if people.count > 0 %}
+        <h2>Список студентов</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Возраст</th>
+                    <th scope="col">Группа</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in people %}
+                <tr>
+                    <td>{{ person.id }}</td>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.age }}</td>
+                    <td>{{ person.group}}</td>
+                    <td><a href="edit/{{person.id}}">Изменить</a> | <a href="delete/{{person.id}}">Удалить</a> | <a href="show_cources/{{person.id}}">Записать на курсы</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+</body>
+</html>
